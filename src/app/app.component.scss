@@ -1,0 +1,47 @@
+.my-img {
+    --color: #6dd19c; /* the border color */
+    --border: 5px;   /* the border thickness*/
+    --offset: 20px;   /* control the offset*/
+    --gap: 2px;       /* the gap on hover */
+    
+    --_c: var(--color) var(--border), #0000 0 calc(100% - var(--border)),var(--color) 0;
+    --_o: calc(3*var(--offset));
+    padding: 
+      calc(var(--gap) + var(--border))
+      calc(var(--gap) + var(--border) + var(--offset))
+      calc(var(--gap) + var(--border) + var(--offset))
+      calc(var(--gap) + var(--border));
+    background: 
+      linear-gradient(      var(--_c)) var(--_o) var(--_o), 
+      linear-gradient(90deg,var(--_c)) var(--_o) var(--_o);
+    background-size: calc(100% - var(--_o)) calc(100% - var(--_o));
+    background-repeat: no-repeat;
+    filter: grayscale(.4);
+    transition: .5s;
+    cursor: pointer;
+  }
+  .my-img:hover {
+    background-position: 0px 0px;
+    background-size: calc(100% - var(--offset)) calc(100% - var(--offset));
+    // filter: grayscale(0);
+  }
+
+  .my-list {
+    list-style: none;
+  }
+  
+  .my-list li:before {
+    content: "";
+    border-top: 0.4rem solid transparent;
+    border-bottom: 0.4rem solid transparent;
+    border-right: 0.4rem solid #6dd19c;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-right: 0.5rem;
+    transform: scaleX(-1);
+  }
+  
+
+
+

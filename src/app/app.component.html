@@ -1,0 +1,581 @@
+<div
+  *ngIf="showSpinner"
+  class="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black bg-opacity-75 z-50"
+>
+  <div
+    class="animate-spin rounded-full h-32 w-32 border-t-4 border-green-300"
+  ></div>
+</div>
+
+<div *ngIf="!showSpinner">
+  <nav
+    style="background-color: #0a192f"
+    class="px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900 sticky top-0 z-10"
+  >
+    <div class="container flex flex-wrap items-center justify-between mx-auto">
+      <a href="#" class="flex items-center">
+        <img
+          src="/assets/image/myLogo.png"
+          class="h-6 text-white mr-3 sm:h-9"
+          alt="Flowbite Logo"
+        />
+      </a>
+      <button
+        (click)="toggleNavbar()"
+        data-collapse-toggle="navbar-default"
+        type="button"
+        class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        aria-controls="navbar-default"
+        aria-expanded="false"
+      >
+        <span class="sr-only">Open main menu</span>
+        <svg
+          class="w-6 h-6"
+          aria-hidden="true"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+      </button>
+      <div
+        [ngClass]="{ hidden: !isNavbarOpen, flex: isNavbarOpen }"
+        class="hidden w-full md:block md:w-auto"
+        id="navbar-default"
+      >
+        <ol class="flex flex-col lg:flex-row list-none ml-auto">
+          <li class="mx-3">
+            <a
+              (click)="scrollToSection('home')"
+              [ngClass]="
+                selectedSection == 'home' ? 'text-green-300' : 'text-slate-300'
+              "
+              class="block cursor-pointer py-2 pl-3 pr-4 bg-blue-700 rounded md:bg-transparent md:hover:text-green-300 md:p-0 dark:text-slate-300"
+              aria-current="page"
+            >
+              <span class="text-green-300">01.</span>&nbsp; Home</a
+            >
+          </li>
+          <li class="mx-3">
+            <a
+              (click)="scrollToSection('about')"
+              [ngClass]="
+                selectedSection == 'about' ? 'text-green-300' : 'text-slate-300'
+              "
+              class="block cursor-pointer py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-300 md:p-0 dark:text-gray-400 md:dark:hover:text-slate-300 dark:hover:bg-gray-700 dark:hover:text-slate-300 md:dark:hover:bg-transparent"
+            >
+              <span class="text-green-300">02.</span>&nbsp; About</a
+            >
+          </li>
+          <li class="mx-3">
+            <a
+              (click)="scrollToSection('jobs')"
+              [ngClass]="
+                selectedSection == 'jobs' ? 'text-green-300' : 'text-slate-300'
+              "
+              class="block cursor-pointer py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-300 md:p-0 dark:text-gray-400 md:dark:hover:text-slate-300 dark:hover:bg-gray-700 dark:hover:text-slate-300 md:dark:hover:bg-transparent"
+            >
+              <span class="text-green-300">03.</span>&nbsp;Experience</a
+            >
+          </li>
+          <li class="mx-3">
+            <a
+              (click)="scrollToSection('projects')"
+              [ngClass]="
+                selectedSection == 'projects'
+                  ? 'text-green-300'
+                  : 'text-slate-300'
+              "
+              class="block cursor-pointer py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-300 md:p-0 dark:text-gray-400 md:dark:hover:text-slate-300 dark:hover:bg-gray-700 dark:hover:text-slate-300 md:dark:hover:bg-transparent"
+            >
+              <span class="text-green-300">04.</span>&nbsp;Work</a
+            >
+          </li>
+          <li class="mx-3">
+            <a
+              (click)="scrollToSection('contact')"
+              [ngClass]="
+                selectedSection == 'contact'
+                  ? 'text-green-300'
+                  : 'text-slate-300'
+              "
+              class="block py-2 cursor-pointer pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-300 md:p-0 dark:text-gray-400 md:dark:hover:text-slate-300 dark:hover:bg-gray-700 dark:hover:text-slate-300 md:dark:hover:bg-transparent"
+            >
+              <span class="text-green-300">05.</span>&nbsp; Contact</a
+            >
+          </li>
+        </ol>
+      </div>
+    </div>
+  </nav>
+  <i class="bx bx-hot"></i>
+
+  <!-- main content  -->
+
+  <section
+    id="home"
+    data-aos="fade-in"
+    data-aos-duration="3000"
+    class="px-4 md:px-8 lg:px-24 xl:px-32 mt-12 lg:mt-24"
+  >
+    <div class="grid grid-cols-1 md:grid-cols-1 gap-4 md:gap-8 lg:gap-12">
+      <div>
+        <p class="text-green-300 text-lg tracking-wider mt-4 md:mt-0">
+          Hi, my name is
+        </p>
+        <h1
+          class="text-5xl md:text-7xl font-bold mt-5 tracking-wide text-slate-200"
+        >
+          Himanshu Mishra.
+        </h1>
+        <h1
+          class="text-5xl md:text-7xl font-bold mt-4 tracking-wide text-slate-500"
+        >
+          I build things for web.
+        </h1>
+      </div>
+      <div class="mt-8 md:mt-0 text-slate-300">
+        <p class="mb-6">
+          I’m a software developer specializing in building (and occasionally
+          designing) <br />
+          exceptional digital experiences. Currently, I’m focused on building
+          accessible,<br />
+          human-centered websites at Tranzita.
+        </p>
+        <div class="mt-6">
+          <a
+            href="assets/Himanshu_Updated.pdf"
+            download="Himanshu-Mishra-SDE-MEAN.pdf"
+            class="bg-transparent hover:opacity-50 text-green-300 font-semibold py-2 px-4 border border-green-300 hover:border-transparent rounded"
+          >
+            Resume
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div
+      data-aos="fade-up"
+      data-aos-duration="1000"
+      class="container mx-auto px-6 md:px-24 mt-32 pt-10"
+    >
+      <div class="flex flex-col md:flex-row items-center">
+        <h2 class="text-white text-xl font-bold md:mr-8">
+          <span class="text-green-300">01.</span>&nbsp;&nbsp; About Me
+        </h2>
+        <hr
+          class="w-64 md:w-96 h-0.5 my-4 mx-4 bg-slate-400 border-0 rounded dark:bg-gray-700"
+        />
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-5 ml-2 gap-4">
+        <div
+          class="container md:col-span-3 text-center md:text-left lg:text-left"
+        >
+          <div class="text-slate-300 mt-10">
+            Hi There!  I am Himanshu Mishra.<br />
+
+            Hello! I am a Fullstack Developer with expertise in the MEAN stack,
+            and I have gained valuable experience over my 1.8 years of
+            professional experience. My programming skills revolve around
+            JavaScript, TypeScript, and Python (basic knowledge). In terms of
+            specific technologies, I am proficient in Node.js, Angular, Express,
+            MSSQL, Mongo, and Python.
+            <div class="text-slate-300 mt-4">
+              I had the opportunity to work on two global projects, as well as a
+              national-level project. One of my notable clients includes a top
+              FMCG conglomerate.
+            </div>
+            <div class="text-slate-300 mt-4">
+              My strength lies in understanding client requirements thoroughly
+              and transforming them into efficient solutions. I primarily focus
+              on utilizing Angular and Node.js to deliver exceptional results.
+              Moreover, I have gained hands-on experience in on-site project
+              management by traveling to two different states in India. During
+              these visits, I successfully launched and onboarded users onto the
+              applications while providing comprehensive training.
+            </div>
+          </div>
+          <div class="text-slate-300 mt-4">
+            I am adept at understanding client needs, implementing effective
+            solutions, and ensuring seamless user experiences. I am always eager
+            to take on new challenges and continue expanding my skill set in the
+            dynamic field of software development.
+          </div>
+          <div class="text-slate-300 mt-4">
+            Here are a few technologies I’ve been working with recently:
+          </div>
+          <div class="container grid grid-cols-1 md:grid-cols-2 mt-4">
+            <div>
+              <ul
+                class="my-list max-w-md space-y-1 text-slate-300 list-disc list-inside dark:text-gray-400"
+              >
+                <li>JavaScript(ES6+)</li>
+                <li>Angular</li>
+                <li>Node.js</li>
+                <li>Git</li>
+                <li>Python(Basic)</li>
+              </ul>
+            </div>
+            <div>
+              <ul
+                class="my-list max-w-md space-y-1 text-slate-300 list-disc list-inside dark:text-gray-400"
+              >
+                <li>TypeScript</li>
+                <li>Sequelize</li>
+                <li>HTML/CSS</li>
+                <li>MSSQL</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="container md:col-span-2 flex justify-center">
+          <img
+            class="my-img transition h-80 w-auto mt-5 border-solid rounded-lg opacity-50 hover:opacity-100"
+            src="/assets/image/him.jpeg"
+            alt="My Image"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="jobs" class="px-4 md:px-10 lg:px-24 py-12">
+    <div
+      data-aos="fade-up"
+      data-aos-duration="1000"
+      class="max-w-6xl mx-auto container px-6 md:px-24 mt-24 pt-10"
+    >
+      <div class="flex flex-col md:flex-row items-center">
+        <h2 class="text-white text-xl font-bold md:mr-8">
+          <span class="text-green-300">02.</span>&nbsp;&nbsp;
+          {{ selectedTab === 1 ? "Where I'am Working" : "Where I've Worked" }}
+        </h2>
+        <hr
+          class="w-64 md:w-96 h-0.5 my-4 mx-4 bg-slate-400 border-0 rounded dark:bg-gray-700"
+        />
+      </div>
+      <div class="flex flex-col lg:flex-row pt-6">
+        <div class="flex-none lg:w-48">
+          <div class="flex flex-col">
+            <div class="flex flex-col p-4">
+              <a
+                class="text-gray-600 border-l-2 hover:bg-slate-800 py-2 px-4 font-medium"
+                (click)="selectedTab = 1"
+                [ngClass]="
+                  selectedTab === 1
+                    ? 'text-green-300 border-green-300'
+                    : 'border-gray-600'
+                "
+              >
+                Tranzita
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="flex-1 mt-4 lg:mt-0 lg:mr-32">
+          <div class="p-4">
+            <div *ngIf="selectedTab === 1">
+              <h3 class="text-white text-xl font-bold">
+                Web Developer
+                <span
+                  class="text-green-300 cursor-pointer"
+                  (click)="redirectToUrl('https://www.tranzita.com/')"
+                  >&nbsp;@Tranzita Systems</span
+                >
+              </h3>
+              <p class="text-slate-300 pt-2">October 2021 - Present</p>
+              <ul
+                class="my-list pt-2 ml-4 mr-8 md:mr-20 text-slate-300 list-inside dark:text-gray-400"
+              >
+                <li class="pt-3">
+                  Contribute to the development of innovative web applications
+                  for clients across various industries.
+                </li>
+                <li class="pt-3">
+                  Collaborating closely with cross-functional teams, utilizing
+                  expertise in Angular to create responsive and visually
+                  appealing user interfaces.
+                </li>
+                <li class="pt-3">
+                  The proficiency in comprehending user requirements and
+                  devising optimal code solutions has proven to be instrumental
+                  in delivering high-quality projects within the designated time
+                  frame.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div
+      data-aos="fade-up"
+      data-aos-duration="1000"
+      class="container mx-auto px-6 md:px-24 mt-24 pt-10"
+    >
+      <div class="flex flex-col md:flex-row items-center">
+        <h2 class="text-white text-xl font-bold md:mr-8">
+          <span class="text-green-300">03.</span>&nbsp;&nbsp; Some Things I’ve
+          Built
+        </h2>
+        <hr
+          class="w-64 md:w-96 h-0.5 my-4 mx-4 bg-slate-400 border-0 rounded dark:bg-gray-700"
+        />
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
+        <div class="mx-auto md:ml-0">
+          <img
+            class="transition h-auto w-full md:w-auto mx-auto md:ml-16 mt-5 border-solid rounded-lg opacity-50 hover:opacity-100"
+            src="/assets/image/clms.png"
+            alt="My Image"
+          />
+        </div>
+        <div class="mt-7 md:mt-0 ml-0">
+          <h3 class="font-bold text-green-300 text-center md:text-right">
+            Featured Project
+          </h3>
+          <h3
+            class="font-bold text-xl text-white my-3 text-center md:text-right"
+          >
+            CentreLine Management System Germany
+          </h3>
+          <div
+            style="background-color: #112240; position: relative; z-index: 1"
+            class="flex items-center justify-center p-6 border rounded-lg shadow border-gray-700"
+          >
+            <div class="text-slate-300 text-center md:text-left">
+              Developed
+              <span class="text-green-300"> CentreLine Management System</span>
+              web app using Angular, Node, and Sequelize for P&G. It helps P&G
+              employees to compare their machinery configurations across global
+              plants , making them more efficient and accurate.
+            </div>
+          </div>
+          <ul
+            class="flex flex-wrap justify-center md:justify-end text-green-300 my-4"
+          >
+            <li class="px-3 py-2">Angular</li>
+            <li class="px-3 py-2">Node.js</li>
+            <li class="px-3 py-2">Sequelize(MSSQL)</li>
+            <li class="px-3 py-2">Material Tree View</li>
+            <li class="px-3 py-2">AgGrid Tables</li>
+            <li class="px-3 py-2">Azure App Service</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div
+      data-aos="fade-up"
+      data-aos-duration="1000"
+      class="container mx-auto px-4 md:px-24 mt-24 pt-10"
+    >
+      <div class="grid grid-cols-1 md:grid-cols-6">
+        <div class="md:col-span-3 mt-7 md:mt-0 md:ml-14">
+          <div class="flex flex-col items-center md:items-start">
+            <h3 class="font-bold text-green-300">Featured Project</h3>
+            <h3 class="font-bold text-xl text-white my-3">
+              Branch Replenishment System (BRS)
+            </h3>
+          </div>
+          <div
+            style="
+              background-color: #112240;
+              position: relative;
+              z-index: 1;
+              width: 108%;
+            "
+            class="flex items-center justify-center p-6 border rounded-lg shadow border-gray-700"
+          >
+            <div class="text-slate-300">
+              <li>
+                A Supply Chain Management project of a big FMCG conglomerate
+                which involves products distribution across all states in India.
+                Currently used by<span class="font-bold text-green-300">
+                  6+ states</span
+                >
+                and expanding.
+              </li>
+              <li>
+                Integrated external function App APIs in Nodejs also converting
+                some of them from Python to Js.
+              </li>
+              <li>
+                Visited 2+ states including pilot site to train, explain logic
+                and cutover of manual process.
+              </li>
+            </div>
+          </div>
+          <ul
+            class="flex flex-wrap justify-center md:justify-end text-green-300 my-4"
+          >
+            <li class="px-3 py-2">Angular</li>
+            <li class="px-3 py-2">Node.js</li>
+            <li class="px-3 py-2">Sequelize(MSSQL)</li>
+            <li class="px-3 py-2">JWT</li>
+            <li class="px-3 py-2">Socket.io</li>
+            <li class="px-3 py-2">Python</li>
+          </ul>
+        </div>
+        <div class="md:col-span-3 mt-6 md:mt-0">
+          <img
+            class="transition h-auto w-full md:h-80 md:w-full object-cover object-center border-solid rounded-lg opacity-50 hover:opacity-100"
+            src="/assets/image/brs.png"
+            alt="My Image"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div
+      data-aos="fade-up"
+      data-aos-duration="1000"
+      class="container mx-auto px-6 md:px-24 mt-24 pt-10"
+    >
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
+        <div class="mx-auto md:ml-0">
+          <img
+            class="transition h-auto w-full md:w-auto mx-auto md:ml-16 mt-5 border-solid rounded-lg opacity-50 hover:opacity-100"
+            src="/assets/image/pdsa.png"
+            alt="My Image"
+          />
+        </div>
+        <div class="mt-7 md:mt-0 ml-0">
+          <h3 class="font-bold text-green-300 text-center md:text-right">
+            Featured Project
+          </h3>
+          <h3
+            class="font-bold text-xl text-white my-3 text-center md:text-right"
+          >
+            Proficy Dashboard South Africa
+          </h3>
+          <div
+            style="background-color: #112240; position: relative; z-index: 1"
+            class="flex items-center justify-center p-6 border rounded-lg shadow border-gray-700"
+          >
+            <div class="text-slate-300 text-center md:text-left">
+              Contributed to the development of
+              <span class="text-green-300">Proficy Dashboard South Africa</span>
+              web app using Angular, Node, Sequelize. It is designed to help
+              users to monitor realtime status of running machines and track
+              faults, it reduces manual effort by 70%.It reduces management's
+              precious time by reducing the number of visits to machinery
+              points.
+            </div>
+          </div>
+          <ul
+            class="flex flex-wrap justify-center md:justify-end text-green-300 my-4"
+          >
+            <li class="px-3 py-2">Angular</li>
+            <li class="px-3 py-2">Node.js</li>
+            <li class="px-3 py-2">Sequelize</li>
+            <li class="px-3 py-2">InfluxDB</li>
+            <li class="px-3 py-2">Axios</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div
+      class="flex flex-col justify-center container md:px-24 mt-48 mb- pt-10"
+    >
+      <div
+        style="display: flex; flex-direction: column"
+        class="flex justify-start md:flex-row items-center"
+      >
+        <div>
+          <h2 class="text-white text-xl font-bold">
+            <span class="text-green-300">04.&nbsp;&nbsp; What's Next?</span>
+          </h2>
+        </div>
+        <div>
+          <h2 class="text-white text-4xl font-bold mt-6">Get in Touch</h2>
+        </div>
+      </div>
+      <div
+        class="flex flex-col justify-center items-center md:px-60 ml-2 gap-4"
+      >
+        <div
+          style="text-align: center"
+          class="container md:max-w-md text-white mt-6"
+        >
+          Thank you for visiting my profile. If you have any questions or would
+          like to discuss potential job opportunities, please feel free to reach
+          out to me. I'll try my best to get back to you!
+        </div>
+        <div class="mt-6">
+          <button
+            (click)="openMail()"
+            class="bg-transparent hover:opacity-50 text-green-300 font-semibold py-2 px-4 border border-green-300 hover:border-transparent rounded"
+          >
+            Say Hello
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- footer -->
+
+  <footer style="background-color: #0a192f">
+    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+      <hr
+        class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8"
+      />
+      <div class="flex items-center justify-between">
+        <span class="text-sm text-gray-100 sm:text-center dark:text-gray-400"
+          >© 2023 Built by Himanshu</span
+        >
+        <div class="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
+          <a
+            target="_blank"
+            href="https://www.linkedin.com/in/himanshu-mishra-1074bb18b"
+            class="text-gray-100 hover:text-green-300 dark:hover:text-white"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-5"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"
+              />
+            </svg>
+          </a>
+          <a
+            target="_blank"
+            href="https://github.com/himanshu754"
+            class="text-gray-100 hover:text-green-100 dark:hover:text-white"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <span class="sr-only">GitHub account</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
